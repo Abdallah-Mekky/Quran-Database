@@ -383,3 +383,7 @@ abstract class MyDataBase : RoomDatabase() {
 ```
 
 * Do Not forget to create your own `DAO`
+
+# Modifications
+
+* Use [DB Browser for SQLite](https://sqlitebrowser.org/dl/) to change (add, update, or delete) the database.
