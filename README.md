@@ -15,15 +15,15 @@ Large database of the entire Quran with many features:
 * Tafsir (interpretation) of the Quran by al-Saadi, al-Muisir, and al-Baghawi.
 
 
-# Getting Started  
+# How to begin  
 
 1- Download `quran.zip` file attached to the repo.
 
 2- Extract `quran.db` file form `quran.zip`.
 
-3- Add `quran.db` file to `assets` file.
+3- Add `quran.db` file to `assets` folder.
 
-4- Add `Room` dependencies to `build.gradle Module Level`.
+4- Add `Room` dependencies to `build.gradle (Module Level)`.
 
 ```Code
     def room_version = "put_latest_version"
@@ -287,6 +287,7 @@ public class Aya {
 ```kotlin
 @Entity(tableName = "quran")
 class Aya(
+    @field:ColumnInfo @field:PrimaryKey var id: Int,
     @field:ColumnInfo var aya_text_emlaey: String,
     @field:ColumnInfo var sora_name_en: String,
     @field:ColumnInfo var page: Int,
@@ -294,7 +295,6 @@ class Aya(
     @field:ColumnInfo var aya_no: Int,
     @field:ColumnInfo var aya_text: String,
     @field:ColumnInfo var sora_name_ar: String,
-    @field:ColumnInfo @field:PrimaryKey var id: Int,
     @field:ColumnInfo var line_start: Int,
     @field:ColumnInfo var sora: Int,
     @field:ColumnInfo var line_end: Int,
@@ -315,7 +315,7 @@ class Aya(
 @Database(entities = {Aya.class}, version = 1)
 public abstract class MyDataBase extends RoomDatabase {
 
-    public static final String DATABASE_NAME = "DatabaseQuran";
+    private static final String DATABASE_NAME = "DatabaseQuran";
     private static volatile MyDataBase myDataBase = null;
     
     public static void initDataBase(Context context) {
@@ -367,7 +367,7 @@ abstract class MyDataBase : RoomDatabase() {
                             DATABASE_NAME
                         )
                             .createFromAsset("quran.db")
-                            .allowMainThreadQueries()
+                            .allowMainThreadQueries() //It's better to use Rx-Java or Kotlin Coroutines
                             .fallbackToDestructiveMigration()
                             .build()
                     }
