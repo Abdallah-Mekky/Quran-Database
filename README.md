@@ -23,7 +23,7 @@ Large database of the entire Quran with many features:
 
 3- Add `quran.db` file to `assets` folder.
 
-4- Add `Room` dependencies to `build.gradle (Module Level)`.
+4- Add [Room](https://developer.android.com/training/data-storage/room) dependencies to `build.gradle (Module Level)`.
 
 ```Code
     def room_version = "put_latest_version"
